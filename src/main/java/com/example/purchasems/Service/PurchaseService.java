@@ -1,6 +1,8 @@
 package com.example.purchasems.Service;
 
 
+import com.example.purchasems.Model.Customer;
+import com.example.purchasems.Model.Item;
 import com.example.purchasems.Model.Purchase;
 import com.example.purchasems.Repo.PurchaseRepo;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,9 @@ public class PurchaseService {
         return purchaseRepo.findAll();
     }
 
-    public String buy(List<Long> itemIDs, long customerId) {
-        Purchase p1 = new Purchase(customerId,itemIDs);
-        purchaseRepo.save(p1);
-        return "temp success";
+    public String buy(List<Item> items, Customer customer) {
+        purchaseRepo.save(new Purchase(customer, items));
+        return "Purchase successful";
     }
 //    public List<Purchase> getCustomerPurchases(long id){
 //        return purchaseRepo.findAllByCustomerId(id);
