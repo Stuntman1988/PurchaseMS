@@ -22,9 +22,14 @@ public class Purchase {
     @CreationTimestamp
     private LocalDateTime purchaseDate;
 
-    @ElementCollection // FRÅGA ROBERT SENARE
-    private List<Long> itemIDs;
-    private long CustomerID;
+    //@ElementCollection // FRÅGA ROBERT SENARE
+    @OneToMany
+    @JoinTable
+    private List<Item> items;
+
+    @OneToOne
+    @JoinColumn
+    private Customer customer;
 //    @OneToOne
 //    @JoinColumn
 //    private Customer customer;
@@ -36,9 +41,9 @@ public class Purchase {
 
 
 
-    public Purchase(long CustomerID, List<Long> itemIDs){
-        this.CustomerID = CustomerID;
-        this.itemIDs = itemIDs;
+    public Purchase(Customer customer, List<Item> items){
+        this.customer = customer;
+        this.items = items;
     }
 
 
