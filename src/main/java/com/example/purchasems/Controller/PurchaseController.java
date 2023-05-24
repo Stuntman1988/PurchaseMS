@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -58,10 +59,10 @@ public class PurchaseController {
             log.warn("ITEM " + items + " - CUSTOMER " + customer);
             return purchaseService.buy(items, customer);
         } catch (Exception e) {
-            log.warn("+" + e.getStackTrace());
+//            log.warn("+" + Arrays.toString(e.getStackTrace()));
+//            log.error("Exception" + e);
             return "hej";
         }
-
     }
 
 //    @GetMapping("/{customerId}")
