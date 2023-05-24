@@ -30,6 +30,7 @@ public class Purchase {
     @OneToOne
     @JoinColumn
     private Customer customer;
+
 //    @OneToOne
 //    @JoinColumn
 //    private Customer customer;
@@ -37,9 +38,7 @@ public class Purchase {
 
 //    @ManyToMany
 //    @JoinTable
-//    List<Item> items = new ArrayList<>();
-
-
+//    List<Item> items;
 
     public Purchase(Customer customer, List<Item> items){
         this.customer = customer;

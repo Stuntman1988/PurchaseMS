@@ -25,8 +25,12 @@ public class PurchaseService {
     }
 
     public String buy(List<Item> items, Customer customer) {
-        purchaseRepo.save(new Purchase(customer, items));
-        return "Purchase successful";
+        try {
+            purchaseRepo.save(new Purchase(customer, items));
+            return "Purchase successful";
+        }catch (Exception e){
+            return "WRONG";
+        }
     }
 //    public List<Purchase> getCustomerPurchases(long id){
 //        return purchaseRepo.findAllByCustomerId(id);

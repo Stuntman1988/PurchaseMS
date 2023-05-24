@@ -43,20 +43,19 @@ public class PurchaseController {
     public String buy(@RequestParam List<Long> itemIds, @RequestParam long customerId) {
         log.warn("ID" + itemIds + " custID" + customerId);
         try {
-            Customer customer = restTemplate.getForObject("http://CustomerMS-1:8080/customers/" + customerId, Customer.class);
-            log.warn("cust" + customer);
+            Customer customer = restTemplate.getForObject("http://CustomerMS:8080/customers/" + customerId, Customer.class);
             if (customer == null) {
                 return "Invalid customer ID";
             }
-            log.warn("2");
             List<Item> items = new ArrayList<>();
             for (Long itemId : itemIds) {
-                Item item = restTemplate.getForObject("http://ItemMS-1:8080/items/" + itemId, Item.class);
+                Item item = restTemplate.getForObject("http://ItemMS:8080/items/" + itemId, Item.class);
                 if (item == null) {
                     return "Invalid product ID: " + itemId;
                 }
                 items.add(item);
             }
+            log.warn("ITEM " + items + " - CUSTOMER " + customer);
             return purchaseService.buy(items, customer);
         } catch (Exception e) {
             log.warn("+" + e.getStackTrace());
