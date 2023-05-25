@@ -16,6 +16,7 @@ import java.util.List;
 
 
 @Service
+//@Transactional //*****
 public class PurchaseService {
 
     public final PurchaseRepo purchaseRepo;
@@ -27,11 +28,11 @@ public class PurchaseService {
         this.purchaseRepo = purchaseRepo;
     }
 
-    public List<Purchase> getAllPurchase(){
+    public List<Purchase> getAllPurchases(){
         return purchaseRepo.findAll();
     }
 
-    public String buy(List<Item> items, Customer customer) {
+    public String buy(List<Long> items, Long customerId) {
         try {
             log.warn("PURCHASESERVICE");
             Purchase purchase = new Purchase(customerId, items);

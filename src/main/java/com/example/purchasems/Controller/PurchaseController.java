@@ -7,11 +7,8 @@ import com.example.purchasems.Service.PurchaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +25,7 @@ public class PurchaseController {
 
 //    @Value("${user-service.url}")
 //    private String userServiceBaseUrl;
-
+    @Autowired
     private final PurchaseService purchaseService;
 
     public PurchaseController(PurchaseService purchaseService) {
@@ -36,8 +33,8 @@ public class PurchaseController {
     }
 
     @GetMapping
-    public List<Purchase> getAllItems() {
-        return purchaseService.getAllPurchase();
+    public List<Purchase> getAllPurchases() {
+        return purchaseService.getAllPurchases();
     }
 
     @PostMapping("/buy")
