@@ -32,7 +32,7 @@ public class PurchaseController {
         this.purchaseService = purchaseService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Purchase> getAllPurchases() {
         return purchaseService.getAllPurchases();
     }
