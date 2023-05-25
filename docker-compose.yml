@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_HOST: customer-mysql
       DB_USER: customeruser
-      DB_PASSWORD: Password
+      DB_PASSWORD: ${DB_PASSWORD}
       MYSQL_PORT: 3306
       DB_DATABASE: Customer_Database
     depends_on:
@@ -35,7 +35,7 @@ services:
     environment:
       MYSQL_HOST: purchase-mysql
       DB_USER: purchaseuser
-      DB_PASSWORD: Password
+      DB_PASSWORD: ${DB_PASSWORD}
       MYSQL_PORT: 3306
       DB_DATABASE: Purchase_Database
     depends_on:
@@ -49,8 +49,8 @@ services:
     environment:
       MYSQL_DATABASE: Purchase_Database
       MYSQL_USER: purchaseuser
-      MYSQL_PASSWORD: Password
-      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
 
 
   ItemMS:
@@ -62,7 +62,7 @@ services:
       environment:
         MYSQL_HOST: item-mysql
         DB_USER: itemuser
-        DB_PASSWORD: Password
+        DB_PASSWORD: ${DB_PASSWORD}
         MYSQL_PORT: 3306
         DB_DATABASE: Item_Database
       depends_on:
@@ -76,5 +76,5 @@ services:
     environment:
       MYSQL_DATABASE: Item_Database
       MYSQL_USER: itemuser
-      MYSQL_PASSWORD: Password
-      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
