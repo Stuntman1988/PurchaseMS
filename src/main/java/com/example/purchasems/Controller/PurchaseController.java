@@ -42,26 +42,30 @@ public class PurchaseController {
 
     @PostMapping("/buy")
     public String buy(@RequestParam List<Long> itemIds, @RequestParam long customerId) {
-        log.warn("ID" + itemIds + " custID" + customerId);
+        log.info("ID" + itemIds + " customerID" + customerId);
         try {
             Customer customer = restTemplate.getForObject("http://CustomerMS:8080/customers/" + customerId, Customer.class);
             if (customer == null) {
                 return "Invalid customer ID";
             }
-            List<Item> items = new ArrayList<>();
+            long custId =customer.getId();
+
+            List<Long> items = new ArrayList<>();
             for (Long itemId : itemIds) {
                 Item item = restTemplate.getForObject("http://ItemMS:8080/items/" + itemId, Item.class);
                 if (item == null) {
                     return "Invalid product ID: " + itemId;
                 }
-                items.add(item);
+                items.add(item.getId());
             }
-            log.warn("ITEM " + items + " - CUSTOMER " + customer);
-            return purchaseService.buy(items, customer);
+            log.info("ITEM " + items + " - CUSTOMER " + custId);
+            String response = purchaseService.buy(items, custId);
+            log.warn("RESPONSE = " + response);
+            return response;
         } catch (Exception e) {
-//            log.warn("+" + Arrays.toString(e.getStackTrace()));
-//            log.error("Exception" + e);
-            return "hej";
+            log.warn("+" + Arrays.toString(e.getStackTrace()));
+            log.error("Exception" + e);
+            return "Something went wrong!";
         }
     }
 

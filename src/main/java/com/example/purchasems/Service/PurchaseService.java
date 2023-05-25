@@ -1,12 +1,17 @@
 package com.example.purchasems.Service;
 
 
+import com.example.purchasems.Controller.PurchaseController;
 import com.example.purchasems.Model.Customer;
 import com.example.purchasems.Model.Item;
 import com.example.purchasems.Model.Purchase;
 import com.example.purchasems.Repo.PurchaseRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -14,6 +19,8 @@ import java.util.List;
 public class PurchaseService {
 
     public final PurchaseRepo purchaseRepo;
+
+    private static final Logger log = LoggerFactory.getLogger(PurchaseController.class);
 
 
     public PurchaseService(PurchaseRepo purchaseRepo){
@@ -26,9 +33,15 @@ public class PurchaseService {
 
     public String buy(List<Item> items, Customer customer) {
         try {
-            purchaseRepo.save(new Purchase(customer, items));
+            log.warn("PURCHASESERVICE");
+            Purchase purchase = new Purchase(customerId, items);
+            log.warn("PURCHASESERVICE2");
+            purchaseRepo.save(purchase);
+            log.warn("PURCHASESERVICE3");
             return "Purchase successful";
         }catch (Exception e){
+            log.error("FEL" + Arrays.toString(e.getStackTrace()));
+            log.error("E" + e);
             return "WRONG";
         }
     }

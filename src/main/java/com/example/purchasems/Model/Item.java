@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 public class Item {
 
     @Id
-    @GeneratedValue
+//    @GeneratedValue
     private long id;
     private String name;
     private double price;
 
-    public Item(String name, double price){
-        this.name=name;
-        this.price=price;
-    }
+//    public Item(String name, double price){
+//        this.name=name;
+//        this.price=price;
+//    }
 }

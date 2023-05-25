@@ -19,8 +19,8 @@ public class Customer {
     private String ssn;
     private String name;
 
-    public Customer(String ssn, String name) {
-        this.name = name;
-        this.ssn = ssn;
-    }
+//    public Customer(String ssn, String name) {
+//        this.name = name;
+//        this.ssn = ssn;
+//    }
 }
