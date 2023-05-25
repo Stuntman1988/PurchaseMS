@@ -23,8 +23,8 @@ services:
     environment:
       MYSQL_DATABASE: Customer_Database
       MYSQL_USER: customeruser
-      MYSQL_PASSWORD: Password
-      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
 
   PurchaseMS:
     image: demo/purchasems
