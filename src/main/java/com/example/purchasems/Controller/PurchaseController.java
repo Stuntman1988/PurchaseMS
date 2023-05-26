@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 @RestController
 @RequestMapping()
 public class PurchaseController {
@@ -44,31 +43,7 @@ public class PurchaseController {
     //@CrossOrigin
     @PostMapping("/purchase/buy")
     public String buy(@RequestParam List<Long> itemIds, @RequestParam long customerId) {
-        log.info("ID" + itemIds + " customerID" + customerId);
-        try {
-            Customer customer = restTemplate.getForObject("http://CustomerMS:8080/customers/" + customerId, Customer.class);
-            if (customer == null) {
-                return "Invalid customer ID";
-            }
-            long custId =customer.getId();
-
-            List<Long> items = new ArrayList<>();
-            for (Long itemId : itemIds) {
-                Item item = restTemplate.getForObject("http://ItemMS:8080/items/" + itemId, Item.class);
-                if (item == null) {
-                    return "Invalid product ID: " + itemId;
-                }
-                items.add(item.getId());
-            }
-            log.info("ITEM " + items + " - CUSTOMER " + custId);
-            String response = purchaseService.buy(items, custId);
-            log.warn("RESPONSE = " + response);
-            return response;
-        } catch (Exception e) {
-            log.warn("+" + Arrays.toString(e.getStackTrace()));
-            log.error("Exception" + e);
-            return "Something went wrong!";
-        }
+        return purchaseService.buy(itemIds, customerId);
     }
 
 //    @GetMapping("/{customerId}")

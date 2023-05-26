@@ -18,5 +18,4 @@ public class PurchaseMsApplication {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate;
      }
-
 }

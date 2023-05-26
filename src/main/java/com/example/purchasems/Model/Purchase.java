@@ -1,15 +1,10 @@
 package com.example.purchasems.Model;
 
-import com.example.purchasems.Controller.PurchaseController;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,12 +47,7 @@ public class Purchase {
     private List<Long> items;
 
     public Purchase(Long customer, List<Long> items){
-        log.warn("PURCHASE");
         this.customerId = customer;
-        log.warn("PURCHASE-1");
         this.items = items;
-        log.warn("PURCHASE-2");
     }
-
-
 }

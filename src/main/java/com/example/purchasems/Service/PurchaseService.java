@@ -19,10 +19,10 @@ import java.util.List;
 //@Transactional //*****
 public class PurchaseService {
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     public final PurchaseRepo purchaseRepo;
-
-    private static final Logger log = LoggerFactory.getLogger(PurchaseController.class);
-
 
     public PurchaseService(PurchaseRepo purchaseRepo){
         this.purchaseRepo = purchaseRepo;
@@ -34,16 +34,20 @@ public class PurchaseService {
 
     public String buy(List<Long> items, Long customerId) {
         try {
-            log.warn("PURCHASESERVICE");
-            Purchase purchase = new Purchase(customerId, items);
-            log.warn("PURCHASESERVICE2");
-            purchaseRepo.save(purchase);
-            log.warn("PURCHASESERVICE3");
+            Customer customer = restTemplate.getForObject("http://CustomerMS:8080/customers/" + customerId, Customer.class);
+            if (customer == null) {
+                return "Invalid customer ID";
+            }
+            for (Long itemId : items) {
+                Item item = restTemplate.getForObject("http://ItemMS:8080/items/" + itemId, Item.class);
+                if (item == null) {
+                    return "Invalid product ID: " + itemId;
+                }
+            }
+            purchaseRepo.save(new Purchase(customerId, items));
             return "Purchase successful";
-        }catch (Exception e){
-            log.error("FEL" + Arrays.toString(e.getStackTrace()));
-            log.error("E" + e);
-            return "WRONG";
+        } catch (Exception e) {
+            return "Something went wrong!";
         }
     }
 //    public List<Purchase> getCustomerPurchases(long id){
