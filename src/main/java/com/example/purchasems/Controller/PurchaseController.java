@@ -41,8 +41,8 @@ public class PurchaseController {
     public List<Purchase> getAllPurchases() {
         return purchaseService.getAllPurchases();
     }
-
-    @PostMapping("/buy")
+    //@CrossOrigin
+    @PostMapping("/purchase/buy")
     public String buy(@RequestParam List<Long> itemIds, @RequestParam long customerId) {
         log.info("ID" + itemIds + " customerID" + customerId);
         try {
