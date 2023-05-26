@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/purchase")
+@RequestMapping()
 public class PurchaseController {
 
     private static final Logger log = LoggerFactory.getLogger(PurchaseController.class);
@@ -33,6 +33,11 @@ public class PurchaseController {
     }
 
     @GetMapping()
+    public String start(){
+        return "Logged in!";
+    }
+
+    @GetMapping("/purchase/list")
     public List<Purchase> getAllPurchases() {
         return purchaseService.getAllPurchases();
     }

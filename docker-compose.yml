@@ -54,7 +54,7 @@ services:
 
 
   ItemMS:
-      image: demo/itemms
+      image: ghcr.io/stuntman1988/itemms:latest
       ports:
         - "8083:8080"
       restart: always

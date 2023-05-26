@@ -19,9 +19,9 @@ public class WebSecurityConfig {
             throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .anyRequest().permitAll()
-                        .requestMatchers("/purchase").authenticated())
+                        .requestMatchers("/","purchase/**").authenticated())
                 .formLogin(Customizer.withDefaults());
+        http.cors().disable().csrf().disable();
         return http.build();
     }
 
