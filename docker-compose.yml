@@ -27,7 +27,7 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
 
   PurchaseMS:
-    image: demo/purchasems
+    image: ghcr.io/stuntman1988/purchasems:latest
     ports:
       - "8082:8080"
     restart: always
