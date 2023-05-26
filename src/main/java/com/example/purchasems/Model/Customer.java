@@ -14,13 +14,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
     @Id
-//    @GeneratedValue
     private long id;
     private String ssn;
     private String name;
-
-//    public Customer(String ssn, String name) {
-//        this.name = name;
-//        this.ssn = ssn;
-//    }
 }
