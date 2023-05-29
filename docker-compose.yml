@@ -1,7 +1,7 @@
 version: '3'
 services:
   CustomerMS:
-    image: ghcr.io/stuntman1988/customerms:latest
+    image: democustomer
     ports:
       - "8081:8080"
     restart: always
@@ -27,7 +27,7 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
 
   PurchaseMS:
-    image: ghcr.io/stuntman1988/purchasems:latest
+    image: demopurchase
     ports:
       - "8082:8080"
     restart: always
@@ -54,7 +54,7 @@ services:
 
 
   ItemMS:
-      image: ghcr.io/stuntman1988/itemms:latest
+      image: demoitem
       ports:
         - "8083:8080"
       restart: always
