@@ -31,6 +31,9 @@ public class PurchaseService {
             if (customer == null) {
                 return "Invalid customer ID";
             }
+            if (items.isEmpty()){
+                return "No products added!";
+            }
             for (Long itemId : items) {
                 Item item = restTemplate.getForObject("http://ItemMS:8080/items/" + itemId, Item.class);
                 if (item == null) {

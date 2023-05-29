@@ -1,6 +1,7 @@
 package com.example.purchasems.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,12 @@ public class Purchase {
     private Long id;
     @CreationTimestamp
     private LocalDateTime purchaseDate;
+
+    @NotNull(message = "\"items\" can not be empty!\n")
     private Long customerId;
 
     @ElementCollection
+    @NotNull(message = "\"items\" can not be empty!\n")
     private List<Long> items;
 
     public Purchase(Long customer, List<Long> items){
